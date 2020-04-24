@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"class/models"
+	_ "class/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	_ "class/models"
 	_ "github.com/go-playground/locales/om"
 )
 
@@ -100,11 +100,11 @@ func (c *MainController) Post() {
 }
 
 
-func (c *MainController) ShowLogin() {
+func (c *MainController)ShowLogin() {
 	c.TplName = "login.html"
 }
 
-func (c *MainController) HandleLogin() {
+func (c *MainController)HandleLogin() {
 	userName := c.GetString("userName")
 	pwd := c.GetString("pwd")
 	if userName =="" || pwd== ""{
@@ -120,26 +120,9 @@ func (c *MainController) HandleLogin() {
 	if err != nil {
 		beego.Info("查询失败")
 		c.TplName = "login.html"
+		return
 	}
 	c.Redirect("/index",302)
 }
 
-// 显示首页内容
-func (c *MainController) ShowIndex() {
-	c.TplName = "index.html"
 
-}
-
-
-// 添加文章界面ShowAdd
-func (c *MainController) ShowAdd() {
-	c.TplName = "add.html"
-}
-
-// 处理添加文章页面数据
-func (c *MainController) HandleAdd() {
-	artiName := c.GetString("articleName")
-	content := c.GetString("content")
-	beego.Info(artiName,content)
-	//c.TplName = "add.html"
-}

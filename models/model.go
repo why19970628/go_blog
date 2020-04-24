@@ -10,8 +10,9 @@ type User struct {
 	Id int
 	Name string
 	Pwd string
+	// 多对多
+	Article []*Article `orm:"rel(m2m)"`
 }
-
 
 //文章结构体
 type Article struct {
@@ -22,16 +23,17 @@ type Article struct {
 	Acontent string  					// 文章内容
 	Aimg string							// 图片
 	Atype string						// 类型
-
-	//ArticleType*ArticleType `orm:"rel(fk)"`
-	//User []*User `orm:"reverse(many)"`
+	ArticleType *ArticleType `orm:"rel(fk)"` // 设置外键
+	User []*User `orm:"reverse(many)"` //
 }
 
-//类型表
+//文章类型
 type ArticleType struct {
 	Id int
-	Tname string
-	//Article []*Article `orm:"reverse(many)"`
+	TypeName string `orm:"size(20)"`
+	//一对多
+	Articles []*Article `orm:"reverse(many)"`
+
 }
 
 func init()  {
