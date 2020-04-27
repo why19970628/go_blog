@@ -13,6 +13,9 @@
                     return false
                 }
             })
+            $("#select").change(function () {
+                $("#form").submit()
+            })
         }
     </script>
 
@@ -46,11 +49,15 @@
     </div>
     <div class="pannel">
         <span class="sel_label">请选择文章分类：</span>
-        <select name="select" id="select" class="sel_opt">
-            <option selected="true">财经新闻</option>
-            <option>体育新闻</option>
-            <option>科技新闻</option>
-        </select>
+
+        <from id="form" method="post" action="/article/index">
+            <select name="select" id="select" class="sel_opt">
+                {{range .types}}
+                <option selected="true">{{.TypeName}}</option>
+            {{end}}
+            </select>
+                <input type="submit" hidden="hidden">
+        </from>
 
         <table class="common_table">
             <tr>
@@ -66,12 +73,12 @@
             {{range .articles}}
                 <tr>
                     <td>{{.ArtiName}}</td>
-                    <td><a href="/content?id={{.Id}}">查看详情</a></td>
-                    <td>{{.Atime.Format "2016-01-02"}}</td>
+                    <td><a href="/article/content?id={{.Id}}">查看详情</a></td>
+                    <td>{{.Atime.Format "2016-01-02 15:05:05"}}</td>
                     <td>{{.Acount}}</td>
-                    <td><a href="/delete?id={{.Id}}" class="dels">删除</a></td>
-                    <td><a href="/update?id={{.Id}}">编辑</a></td>
-                    <td>财经新闻1</td>
+                    <td><a href="/article/delete?id={{.Id}}" class="dels">删除</a></td>
+                    <td><a href="/article/update?id={{.Id}}">编辑</a></td>
+                    <td>{{.ArticleType.TypeName}}</td>
                 </tr>
             {{end}}
         </table>

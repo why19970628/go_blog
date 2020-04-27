@@ -33,7 +33,7 @@
             当前位置：文章管理>编辑文章
         </div>
         <div class="pannel">
-            <form name = logon method = "post" enctype="multipart/form-data" action="/update">
+            <form name = logon method = "post" enctype="multipart/form-data" action="/article/update">
             <h3 class="review_title">编辑文章</h3>
             <div class="form_group">
                 <label>文章标题：</label>
@@ -43,7 +43,7 @@
                 <label>文章内容：</label>
                 <textarea class="input_multxt" name="content">{{.article.Acontent}}</textarea></textarea>
             </div>
-                <input name="id" value="{{.article.Id2}}" hidden="hidden">
+                <input name="id" value="{{.article.Id}}" hidden="hidden">
             <div class="form_group">
                 <label>上传图片：</label>
                 <img src="{{.article.Aimg}}">
