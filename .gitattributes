@@ -2,3 +2,5 @@
 *.css linguist-language=go
 *.html linguist-language=go
 *.png linguist-language=go
+*.php linguist-language=go
+*.cson linguist-language=go
