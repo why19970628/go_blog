@@ -4,3 +4,4 @@
 *.png linguist-language=go
 *.php linguist-language=go
 *.cson linguist-language=go
+.tpl linguist-language=go
